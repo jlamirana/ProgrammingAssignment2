@@ -1,15 +1,27 @@
-## Put comments here that give an overall description of what your
-## functions do
+## 1) makeCacheMatrix - enter a vector consisting a number of elements perfect for a square-matrix format(e.g. a vector of four elements perfect for a 2x2 matrix ).
+## You may try using this command sample to begin:    makeCacheMatrix(c(1,2,3,4))
 
-## Write a short comment describing this function
-
-makeCacheMatrix <- function(x = matrix()) {
-
+makeCacheMatrix <- function(input) { 
+  squareroot <<-sqrt(length(input))
+  matrix <- matrix(input,ncol=squareroot)
+  cache <<- matrix
+  inverse <<- solve(cache)
+  con <<- identical(cache,inverse)
+  
+  if(con == TRUE){
+    cache <- NULL
+  }
+  
+  if (!is.null(cache)) {
+    message("Your matrix is now cached. Enter 'cacheSolve()' to execute the inversion of your matrix.")
+    return(cache)
+  } else {message("Please try to enter another vector of different set of elements.")}
+  
 }
 
-
-## Write a short comment describing this function
-
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+## 2) CacheSolve - type 'cacheSolve()' next to the prompt arrow - to execute the inversion of the cached matrix
+cacheSolve <- function() {
+  inverse <- solve(cache)
+  message("Below is the inverted matrix.")
+  return(inverse)
 }
